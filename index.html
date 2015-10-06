@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>I N J O Z I</title>
+    <link rel="stylesheet" type="text/css" href="../jquery.fullPage.css" />
+    <link rel="stylesheet" type="text/css" href="examples.css" />
+    <style>
+        body{
+            background-color: rgb(198, 61, 15);
+        }
+        /* Style for our header texts
+        * --------------------------------------- */
+        h1{
+            font-size: 5em;
+            font-family: arial,helvetica;
+            color: #fff;
+            margin:0;
+        }
+        .intro p{
+            color: #fff;
+        }
+
+        /* Centered texts in each section
+        * --------------------------------------- */
+        .section{
+            text-align:center;
+            transform:skewY(-15deg);
+            /* Firefox */
+            -moz-transition: all 1s ease;
+            /* WebKit */
+            -webkit-transition: all 1s ease;
+            -webkit-transition: -webkit-transform 1s;
+            /* Opera */
+            -o-transition: all 1s ease;
+            /* Standard */
+            transition: all 1s ease;
+        }
+
+        .content{
+            transform:skewY(15deg);
+            -moz-transition: all 1s ease;
+            -webkit-transition: all 1s ease;
+            -webkit-transition: -webkit-transform 1s;
+            -o-transition: all 1s ease;
+            transition: all 1s ease;
+        }
+
+        /* Bottom menu
+        * --------------------------------------- */
+        #infoMenu li a {
+            color: #fff;
+        }
+    </style>
+
+    <!--[if IE]>
+    <script type="text/javascript">
+        var console = { log: function() {} };
+    </script>
+    <![endif]-->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="/vendors/jquery.slimscroll.min.js"></script>
+
+    <script type="text/javascript" src="/jquery.fullPage.js"></script>
+    <script type="text/javascript" src="examples.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                anchors: ['firstPage', 'secondPage', '3rdPage'],
+                sectionsColor: ['#C63D0F', '#1BBC9B', '#7E8F7C'],
+                navigation: true,
+                navigationPosition: 'right',
+                navigationTooltips: ['First page', 'Second page', 'Third and last page'],
+                responsiveWidth: 900
+            });
+        });
+    </script>
+    <style type="text/css">
+        .skewElement {
+            transform: skewY(15deg);
+        }
+    </style>
+
+</head>
+<body>
+<div id="fullpage">
+    <div class="section" id="section0">
+        <div class="intro content">
+            <h1>Responsive</h1>
+            <p>This example will turn to normal scroll when the window size gets smaller than 900px width</p>
+        </div>
+    </div>
+    <div class="section" id="section1">
+        <div class="intro content">
+            <h1>Ideal for small screens</h1>
+        </div>
+    </div>
+    <div class="section" id="section2">
+        <div class="intro content">
+            <h1>Keep it simple!</h1>
+        </div>
+    </div>
+</div>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.6/TweenLite.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.6/plugins/CSSPlugin.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.6/plugins/ScrollToPlugin.min.js'></script>
+<script src="js/TweenMax.min.js"></script>
+</body>
+</html>
