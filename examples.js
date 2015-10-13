@@ -101,3 +101,158 @@ function preload(imgArray) {
 
     });
 }
+
+var eye = null;
+var eyeColor;
+var iris = {ref: null, x: 0, y: 0, w: 20, h: 20, color:'', lerp: 0};
+var pupil = {ref: null, x: 0, y: 0, size: 10, sizeGoal: 10, lerp: 0};
+
+var mouse = {x: 16.6, y: 16.6, oldX: 16.6, oldY: 16.6};
+
+var r = iris.w/2;
+var center = {
+    x: $('.eye').width()/2 - r,
+    y: $('.eye').height()/2 - r
+};
+var distanceThreshold = $('.eye').width()/2 - r;
+var xp = 45;
+var yp = 55;
+
+// entry point
+window.onload = init;
+
+function init() {
+    eye = $('.eye');
+    eyeColor = eye.css('background-color');
+    eyeColor = eyeColor.replace(/[^\d,.]/g, '').split(',');
+    eyeColor[0] = parseInt(eyeColor[0]);
+    eyeColor[1] = parseInt(eyeColor[1]);
+    eyeColor[2] = parseInt(eyeColor[2]);
+
+    iris.ref = $('.iris');
+    iris.x = parseInt(iris.ref.css('left'));
+    iris.y = parseInt(iris.ref.css('top'));
+    iris.w = parseInt(iris.ref.css('width'));
+    iris.h = parseInt(iris.ref.css('height'));
+    iris.color = iris.ref.css('background-color');
+
+    pupil.ref = $('.pupil');
+    pupil.x = parseInt(pupil.ref.css('left'));
+    pupil.y = parseInt(pupil.ref.css('top'));
+    pupil.w = parseInt(pupil.ref.css('width'));
+    pupil.h = parseInt(pupil.ref.css('height'));
+
+    // start main loop
+    animate();
+}
+
+// Main animation/logic loop
+function animate() {
+    followMouse();
+    updateEmotions();
+    updateEyeParts();
+    mouse.oldX = mouse.x;
+    mouse.oldY = mouse.y;
+    setTimeout(animate, 16);
+}
+
+function updateEyeParts() {
+
+    // update eye "white" part
+    var rgbString = 'rgb(' + Math.round(eyeColor[0]) + ',' +
+        Math.round(eyeColor[1]) + ',' + Math.round(eyeColor[2]) + ')';
+    eye.css('background-color', rgbString);
+
+    // pupil focus
+    pupil.size = interpolate(pupil.size, pupil.sizeGoal, pupil.lerp, 0.03);
+    pupil.x = iris.w/2 - pupil.size/2;
+    pupil.y = iris.h/2 - pupil.size/2;
+
+
+    // iris/pupil movement and color
+    iris.ref.css('left', iris.x + 'px');
+    iris.ref.css('top', iris.y + 'px');
+    iris.ref.css('background', iris.color);
+
+    // pupil
+    pupil.ref.css('left', pupil.x + 'px');
+    pupil.ref.css('top', pupil.y + 'px');
+    pupil.ref.css('width', pupil.size + 'px');
+    pupil.ref.css('height', pupil.size + 'px');
+}
+
+function updateEmotions() {
+
+    eyeColor.forEach(function(element, index) {
+        if (eyeColor[index] >= 255) {
+            eyeColor[index] = 255;
+        }
+        else if (eyeColor[index] <= 0) {
+            eyeColor[index] = 0;
+        }
+    });
+}
+
+// mouse movement event function
+$(window).mousemove(function(e){
+    var eyeposx = parseInt($('.eye').css('left'));
+    var eyeposy = parseInt($('.eye').css('top'));
+
+    var d = {
+        x: e.pageX - r - eyeposx - center.x,
+        y: e.pageY - r - eyeposy - center.y
+    };
+    var distance = Math.sqrt(d.x*d.x + d.y*d.y);
+    if (distance < distanceThreshold) {
+        mouse.x = e.pageX - eyeposx - r;
+        mouse.y = e.pageY - eyeposy - r;
+    }
+    else {
+        mouse.x = d.x / distance * distanceThreshold + center.x;
+        mouse.y = d.y / distance * distanceThreshold + center.y;
+    }
+});
+
+// move eye according to mouse movement
+function followMouse() {
+    var lerpSpeed = 0.12;
+    xp = interpolate(xp, mouse.x, 0, lerpSpeed);
+    yp = interpolate(yp, mouse.y, 0, lerpSpeed);
+
+    var distance = Math.sqrt((mouse.x-mouse.oldX)*(mouse.x-mouse.oldX) +
+        (mouse.y-mouse.oldY)*(mouse.y-mouse.oldY));
+
+    // simulate saccade eye movement
+    if (distance >= 25) {
+        xp = interpolate(xp, mouse.x, 0, 0.4);
+        yp = interpolate(yp, mouse.y, 0, 0.4);
+    }
+
+    iris.x = xp;
+    iris.y = yp;
+}
+
+// linearly interpolate from part to goalPos (smooth animation effect)
+function interpolate(part, goalPos, currentLerp, lerpSpeed) {
+    if (part != goalPos) {
+        currentLerp = 0;
+    }
+
+    if (currentLerp <= 1.0) {
+        currentLerp += lerpSpeed;
+    }
+
+    part = lerp(part, currentLerp, goalPos);
+
+    return part;
+}
+
+// actual formula for linear interpolation
+function lerp(x, t, y) {
+    return x * (1-t) + y*t;
+}
+
+// get random integer in range min-max
+function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
