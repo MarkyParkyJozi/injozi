@@ -46,7 +46,7 @@ var circle = new ProgressBar.Circle('#progress', {
 
 var cirCount =0;
 
-        imgArray = ['http://injozi.biz/wip/obb/assets/brazillian_mobile.png'];
+        imgArray = [];
 
 
 
