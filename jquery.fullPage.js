@@ -1240,8 +1240,31 @@
             //TweenMax.to($($nextSection), 1, {repeat: 1, yoyo: true, skew: '-=15'});
             //TweenMax.to($($nextSection.find(".content")), 1, {repeat: 1, yoyo: true, skew: '+=15'});
 
-            TweenMax.to ($currSection, 1, {bezierThrough:[{x:251, y:247}, {x:305, y:265}, {x:386, y:278}, {x:484, y:282, scaleX:1, scaleY:1}], startAt:{scaleX:0.3, scaleY:0.8}, ease:Quad.easeInOut});
-            TweenMax.from ($currSection.find(".content"), 1, {transformMatrix:{skewY2:40}, ease:Quad.easeInOut});
+            //TweenMax.fromTo($($currSection), 1,
+            //    { top: "10", left: "100", rotation: "-15" },
+            //    { top: "60", left: "382", rotation: "15", ease: Strong.easeIn }
+            //);
+
+            TweenMax.fromTo($($currSection), 1,
+                { repeat: 1, yoyo: true,top: "50", skewY: "30" },
+                { repeat: 1, yoyo: true,top: "20", skewY: "20", ease: Strong.easeIn }
+            );
+
+
+            TweenMax.fromTo($($currSection.find(".content")), 1,
+                { repeat: 1, yoyo: true, skewY: "-30" },
+                { repeat: 1, yoyo: true, skewY: "0", ease: Strong.easeIn }
+            );
+            //TweenMax.fromTo($($currSection), 1,
+            //    { left: "-170", rotation: "15" },
+            //    { left: "0", rotation: "-15", ease: Strong.easeInOut }
+            //);
+
+
+
+
+           // TweenMax.to ($currSection, 1, {bezierThrough:[{x:251, y:247}, {x:305, y:265}, {x:386, y:278}, {x:484, y:282, scaleX:1, scaleY:1}], startAt:{scaleX:0.3, scaleY:0.8}, ease:Quad.easeInOut});
+           // TweenMax.from ($currSection.find(".content"), 1, {transformMatrix:{skewY2:40}, ease:Quad.easeInOut});
 
             //$currSection.css('-webkit-transform', 'skewY(15deg)');
             //$currSection.find(".content").css('-webkit-transform', 'skewY(-15deg)');
@@ -1270,7 +1293,7 @@
         }
 
 
-
+        var hotspots1 = new TimelineMax();
 
 
 

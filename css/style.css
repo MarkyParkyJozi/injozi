@@ -1,0 +1,89 @@
+
+
+        html, body{
+            background-color: #000;
+        }
+
+        body, div, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.0625em;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        @font-face {
+            font-family: 'TrajanPro-Regular';
+            src: url('TrajanPro-Regular.eot?#iefix') format('embedded-opentype'), url('TrajanPro-Regular.otf') format('opentype'), url('TrajanPro-Regular.woff') format('woff'), url('TrajanPro-Regular.ttf') format('truetype'), url('TrajanPro-Regular.svg#TrajanPro-Regular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Whitney-Light';
+            src: url('Whitney-Light.eot') format('embedded-opentype'), url('Whitney-Light.otf') format('opentype'), url('Whitney-Light.woff') format('woff'), url('Whitney-Light.ttf') format('truetype'), url('Whitney-Light.svg#Whitney-Light') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Whitney-Medium';
+            src: url('Whitney-Medium.eot') format('embedded-opentype'), url('Whitney-Medium.otf') format('opentype'), url('Whitney-Medium.woff') format('woff'), url('Whitney-Medium.ttf') format('truetype'), url('Whitney-Medium.svg#Whitney-Medium') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Salome-Regular';
+            src: url('Salome.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'TrajanPro-Bold';
+            src: url('TrajanPro-Bold.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+.container{
+    opacity: 0;
+}
+
+        /***************************************/
+        /* PRELOADER */
+        /*_____________________________________*/
+
+        .overviewLogoPreloader {
+            width: 128px;
+            height: 126px;
+            background: url(/assets/eye.svg) 0 0 no-repeat;
+            background-size: cover;
+            position: relative;
+            top: -119px;
+            right: 9px;
+            z-index: 16;
+            -webkit-transition: opacity 1.2s;
+            transition: opacity 1.2s;
+        }
+        #preloaderwrapper{
+            width: 110px;
+            height: 110px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -55px;
+            margin-left: -55px;
+        }
+
+        .textLeft{
+            text-align: left!important;
+        }
+
+
+
+
