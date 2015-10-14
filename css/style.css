@@ -277,31 +277,10 @@ div.eyes div.pupil {
     width: 12.5px;
     height: 12.5px;
     position: relative;
-    background-image: url("http://i.imgur.com/GKex9PY.png");
+    background-image: url("../assets/pupile.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 12.5px;
-}
-
-#circular div.left_eye,
-#circular div.right_eye {
-    background-image: url("http://i.imgur.com/NDrMPZJ.png");
-    background-size: 25px;
-}
-
-#ellipse div.left_eye,
-#ellipse div.right_eye {
-    background-image: url("http://i.imgur.com/HLTwbEI.png");
-}
-
-#rectangular div.left_eye,
-#rectangular div.right_eye {
-    background-image: url("http://i.imgur.com/lWwTCok.png");
-}
-
-#rounded_rectangular div.left_eye,
-#rounded_rectangular div.right_eye {
-    background-image: url("http://i.imgur.com/bCmoBfN.png");
 }
 
 .eye_container{
@@ -311,3 +290,23 @@ div.eyes div.pupil {
     margin-top: -24px;
     margin-right: -7px;
 }
+
+.logo{
+    margin-left: -26px;
+}
+
+a{
+    color: #ffffff;
+    text-underline: none;
+}
+
+a:hover{
+    color: #ffffff;
+    text-underline: none;
+    text-decoration: none;
+}
+
+a:visited{
+color: #ffffff;
+}
+
