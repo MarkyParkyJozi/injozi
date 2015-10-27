@@ -24,7 +24,9 @@ window.mobilecheck = function() {
 }
 
 function hidePreloader(){
-    $('#preloaderwrapper').animate({marginTop:'125'},800,'easeInOutQuad');
+    $('#preloader').addClass("postloaderwrapper");
+    $('#preloader').removeClass("preloaderwrapper");
+    //$('#preloaderwrapper').animate({marginTop:'125'},800,'easeInOutQuad');
     $('.child').animate({opacity:'1'},800);
     $('.btn-menu').animate({opacity:'1'},800);
 

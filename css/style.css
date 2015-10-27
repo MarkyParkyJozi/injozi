@@ -109,7 +109,7 @@ a {
 .overviewLogoPreloader {
     width: 45px;
     height: 45px;
-    background: url(/assets/eye.svg) 0 0 no-repeat;
+    background: url(/assets/eye_still.svg) 0 0 no-repeat;
     background-size: cover;
     position: relative;
     top: -43px;
@@ -118,14 +118,28 @@ a {
     -webkit-transition: opacity 1.2s;
     transition: opacity 1.2s;
 }
-#preloaderwrapper{
+
+.preloader_container {
+    margin-left: 50%;
+}
+
+
+
+#preloader {
     width: 40px;
     height: 40px;
     position: fixed;
+    margin-left: -20px;
+
+ }
+.postloaderwrapper{
+
+}
+
+.preloaderwrapper{
     top: 50%;
     left: 50%;
-    margin-top: -55px;
-    margin-left: -55px;
+    margin-top: -20px;
 }
 
 .textLeft{
@@ -204,6 +218,11 @@ html, body {
     padding-left: 0;
 }
 
+.email-container{
+    padding-left: 0;
+    padding-right: 0;
+}
+
 
 .clr-pad-r{
     padding-right: 0;
@@ -224,13 +243,13 @@ html, body {
 
 
 .child {
-    width: 1100px;
-    height: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    /*width: 1100px;*/
+    /*height: 600px;*/
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*left: 50%;*/
 
-    margin: -300px 0 0 -558px;
+    /*margin: -300px 0 0 -558px;*/
 }
 .contacts{
     padding-top: 65px;
@@ -292,8 +311,13 @@ div.eyes div.pupil {
 }
 
 .logo{
-    margin-left: -26px;
+    /*margin-left: -26px;*/
 }
+
+.nudge-down p{
+    margin-top: 6px;
+}
+
 
 a{
     color: #ffffff;
@@ -310,3 +334,28 @@ a:visited{
 color: #ffffff;
 }
 
+@media (max-width: 480px) {
+    .move-left {
+        margin-left: 13px;
+        margin-top: -11px;
+    }
+}
+
+@media (max-width: 768px){
+
+    .email-container{
+
+        padding-right: 20px;
+    }
+
+    body{padding-top: 20%}
+}
+
+
+    /* Medium devices (desktops, 992px and up) */
+    @media (min-width: 992px){}
+
+
+        @media (min-width: 1200px){}
+
+            @media (min-width: 990px) and (max-width: 1107px){}

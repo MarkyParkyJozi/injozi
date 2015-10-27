@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>I N J O Z I</title>
+    <link rel="stylesheet" type="text/css" href="css/site.css" />
+    <link href="css/style.css" rel="stylesheet">
+    <link type="text/css" href="http://csshake.surge.sh/csshake.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+</head>
+<body>
+<style>
+    body{
+        background-color: #101010;
+    }
+    .main_image{
+        width: 440px;
+        position: absolute;
+        left: 50%;
+        margin-left: -220px;
+    }
+
+    .btn-menu {
+        display: block;
+        border: 0;
+        width: 40px;
+        height: 25px;
+        background-color: transparent;
+        cursor: pointer;
+        position: absolute;
+        top: 110px;
+        left: 50%;
+        z-index: 9999;
+        margin-left: -53px;
+    }
+
+    .btn-menu .bar{
+        display: block;
+        position: absolute;
+        width: 33px;
+        height: 1px;
+        background-color: #fff;
+        opacity: 0.3;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+
+    .btn-menu .bar_1 {
+        position: absolute;
+        content: '';
+        top: -8px;
+        left: -14px;
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+
+    }
+
+    .btn-menu .bar_2 {
+        top: 0px;
+        left: 0;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .btn-menu .bar_3 {
+        position: absolute;
+        content: '';
+        top: -8px;
+        left: 14px;
+        -webkit-transform: rotate(30deg);
+        transform: rotate(30deg);
+    }
+
+
+    .btn-menu .bar_4 {
+        position: absolute;
+        content: '';
+        top: 17px;
+        left: -28px;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    .btn-menu .bar_5 {
+        position: absolute;
+        content: '';
+        top: 9px;
+        left: -14px;
+        -webkit-transform: rotate(30deg);
+        transform: rotate(30deg);
+    }
+
+    .btn-menu .bar_6 {
+        position: absolute;
+        content: '';
+        top: 9px;
+        left: 14px;
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+    }
+
+    .btn-menu .bar_7 {
+        position: absolute;
+        content: '';
+        top: 17px;
+        left: 28px;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+
+
+
+
+    .btn-menu .bar_8 {
+        position: absolute;
+        content: '';
+        top: 25px;
+        left: -14px;
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+
+    }
+
+    .btn-menu .bar_9 {
+        top: 33px;
+        left: 0;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+
+    .btn-menu .bar_10 {
+        position: absolute;
+        content: '';
+        top: 25px;
+        left: 14px;
+        -webkit-transform: rotate(30deg);
+        transform: rotate(30deg);
+    }
+
+    .btn-menu .bar_11 {
+        position: absolute;
+        content: '';
+        top: 42px;
+        left: -14px;
+        -webkit-transform: rotate(30deg);
+        transform: rotate(30deg);
+    }
+
+    .btn-menu .bar_12 {
+        position: absolute;
+        content: '';
+        top: 42px;
+        left: 14px;
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .show .btn-menu .bar_2 {
+        background-color: yellow;
+        opacity: 1;
+    }
+
+    .show .btn-menu .bar_1 {
+        background-color: yellow;
+        opacity: 1;
+    }
+
+    .show .btn-menu .bar_3 {
+        background-color: yellow;
+        opacity: 1;
+    }
+
+
+</style>
+
+
+<div class="container">
+
+    <img class="main_image" src="assets/craigCursors.png">
+    <div id="cursor" class="btn-menu ">
+        <span class="bar bar_1"></span>
+        <span class="bar bar_2"></span>
+        <span class="bar bar_3"></span>
+        <span class="bar bar_4"></span>
+        <span class="bar bar_5"></span>
+        <span class="bar bar_6"></span>
+        <span class="bar bar_7"></span>
+        <span class="bar bar_8"></span>
+        <span class="bar bar_9"></span>
+        <span class="bar bar_10"></span>
+        <span class="bar bar_11"></span>
+        <span class="bar bar_12"></span>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+<script>
+    var $btn = $('.btn-menu');
+
+    $btn.click(function(){
+
+        $('body').toggleClass('show');
+
+    })
+</script>
+</body>
+</html>
