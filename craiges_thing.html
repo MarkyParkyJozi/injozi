@@ -21,7 +21,7 @@
         margin-left: -220px;
     }
 
-    .btn-menu {
+    .cursor {
         display: block;
         border: 0;
         width: 40px;
@@ -34,20 +34,44 @@
         z-index: 9999;
         margin-left: -53px;
     }
-
-    .btn-menu .bar{
+    .cursor .bar{
         display: block;
         position: absolute;
-        width: 33px;
-        height: 1px;
         background-color: #fff;
         opacity: 0.3;
         -webkit-transition: all 0.3s ease-in-out;
         transition: all 0.3s ease-in-out;
     }
+    .cursor .moving_bar{
+        display: block;
+        position: absolute;
+        background-color: #ffc015;
+        opacity: 0.3;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
 
+    }
 
-    .btn-menu .bar_1 {
+    .yellow{
+        background-color: #ffc015;
+    }
+
+    .hor{
+        width: 33px;
+        height: 1px;
+    }
+
+    .vert{
+        width: 1px;
+        height: 33px;
+    }
+
+    .passive{
+        width: 0px;
+        height: 0px;
+    }
+
+    .cursor .bar_1 {
         position: absolute;
         content: '';
         top: -8px;
@@ -56,15 +80,12 @@
         transform: rotate(-30deg);
 
     }
-
-    .btn-menu .bar_2 {
-        top: 0px;
-        left: 0;
-        -webkit-transform: rotate(90deg);
-        transform: rotate(90deg);
+    .cursor .bar_2 {
+        top: -16px;
+        left: 16px;
     }
 
-    .btn-menu .bar_3 {
+    .cursor .bar_3 {
         position: absolute;
         content: '';
         top: -8px;
@@ -72,9 +93,7 @@
         -webkit-transform: rotate(30deg);
         transform: rotate(30deg);
     }
-
-
-    .btn-menu .bar_4 {
+    .cursor .bar_4 {
         position: absolute;
         content: '';
         top: 17px;
@@ -82,7 +101,7 @@
         -webkit-transform: rotate(90deg);
         transform: rotate(90deg);
     }
-    .btn-menu .bar_5 {
+    .cursor .bar_5 {
         position: absolute;
         content: '';
         top: 9px;
@@ -90,8 +109,7 @@
         -webkit-transform: rotate(30deg);
         transform: rotate(30deg);
     }
-
-    .btn-menu .bar_6 {
+    .cursor .bar_6 {
         position: absolute;
         content: '';
         top: 9px;
@@ -99,8 +117,7 @@
         -webkit-transform: rotate(-30deg);
         transform: rotate(-30deg);
     }
-
-    .btn-menu .bar_7 {
+    .cursor .bar_7 {
         position: absolute;
         content: '';
         top: 17px;
@@ -108,29 +125,21 @@
         -webkit-transform: rotate(90deg);
         transform: rotate(90deg);
     }
-
-
-
-
-
-    .btn-menu .bar_8 {
+    .cursor .bar_8 {
         position: absolute;
         content: '';
         top: 25px;
         left: -14px;
         -webkit-transform: rotate(-30deg);
         transform: rotate(-30deg);
-
     }
-
-    .btn-menu .bar_9 {
+    .cursor .bar_9 {
         top: 33px;
         left: 0;
         -webkit-transform: rotate(90deg);
         transform: rotate(90deg);
     }
-
-    .btn-menu .bar_10 {
+    .cursor .bar_10 {
         position: absolute;
         content: '';
         top: 25px;
@@ -138,8 +147,7 @@
         -webkit-transform: rotate(30deg);
         transform: rotate(30deg);
     }
-
-    .btn-menu .bar_11 {
+    .cursor .bar_11 {
         position: absolute;
         content: '';
         top: 42px;
@@ -147,8 +155,7 @@
         -webkit-transform: rotate(30deg);
         transform: rotate(30deg);
     }
-
-    .btn-menu .bar_12 {
+    .cursor .bar_12 {
         position: absolute;
         content: '';
         top: 42px;
@@ -160,30 +167,36 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-    .show .btn-menu .bar_2 {
+    .show .cursor .bar_2 {
+        background-color: yellow;
+        opacity: 1;
+    }
+    .show .cursor .bar_1 {
+        background-color: yellow;
+        opacity: 1;
+    }
+    .show .cursor .bar_3 {
         background-color: yellow;
         opacity: 1;
     }
 
-    .show .btn-menu .bar_1 {
-        background-color: yellow;
-        opacity: 1;
-    }
+    /*.grow {*/
+        /*animation: grow 1s .5s;*/
+        /*animation-timing-function:linear;*/
+        /*animation-fill-mode:forwards;*/
+        /*animation-iteration-count: 1;*/
+        /*-webkit-animation-iteration-count: 1;*/
+        /*-webkit-animation-timing-function:linear;*/
+        /*-webkit-animation-fill-mode: forwards;*/
+    /*}*/
 
-    .show .btn-menu .bar_3 {
-        background-color: yellow;
-        opacity: 1;
-    }
+    /*@keyframes grow {*/
+        /*0% { width: 3px }*/
+        /*50% { width: 13px }*/
+        /*70% { width: 23px }*/
+        /*80% { width: 28px }*/
+        /*100% { width: 33px }*/
+    /*}*/
 
 
 </style>
@@ -192,19 +205,29 @@
 <div class="container">
 
     <img class="main_image" src="assets/craigCursors.png">
-    <div id="cursor" class="btn-menu ">
-        <span class="bar bar_1"></span>
-        <span class="bar bar_2"></span>
-        <span class="bar bar_3"></span>
-        <span class="bar bar_4"></span>
-        <span class="bar bar_5"></span>
-        <span class="bar bar_6"></span>
-        <span class="bar bar_7"></span>
-        <span class="bar bar_8"></span>
-        <span class="bar bar_9"></span>
-        <span class="bar bar_10"></span>
-        <span class="bar bar_11"></span>
-        <span class="bar bar_12"></span>
+    <div id="cursor" class="cursor ">
+        <span class="bar bar_1 hor"></span>
+        <span class="bar bar_2 vert"></span>
+        <span class="bar bar_3 hor"></span>
+        <span class="bar bar_4 hor"></span>
+        <span class="bar bar_5 hor"></span>
+        <span class="bar bar_6 hor"></span>
+        <span class="bar bar_7 hor"></span>
+        <span class="bar bar_8 hor"></span>
+        <span class="bar bar_9 hor"></span>
+        <span class="bar bar_10 hor"></span>
+        <span class="bar bar_11 hor"></span>
+        <span class="bar bar_12 hor"></span>
+        <span class="moving_bar bar_1 passive"></span>
+        <span class="moving_bar bar_2 passive"></span>
+        <span class="moving_bar bar_3 mbar_3 passive"></span>
+       
+        <span class="moving_bar bar_5 passive"></span>
+       
+        <span class="moving_bar bar_9 passive"></span>
+        <span class="moving_bar bar_10 passive"></span>
+        <span class="moving_bar bar_11 passive"></span>
+        <span class="moving_bar bar_12 passive"></span>
     </div>
 </div>
 
@@ -215,11 +238,17 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
 <script>
-    var $btn = $('.btn-menu');
+    var $btn = $('.cursor');
 
     $btn.click(function(){
 
-        $('body').toggleClass('show');
+        $('.mbar_3').toggleClass('moving_bar');
+        $('.mbar_3').toggleClass('passive');
+        $('.mbar_3').toggleClass('yellow');
+        $('.mbar_3').toggleClass('hor');
+
+
+        $('.bar_3').toggleClass('bar');
 
     })
 </script>

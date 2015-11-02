@@ -1206,12 +1206,12 @@
         * Scrolls the site to the given element and scrolls to the slide if a callback is given.
         */
  var $section1 = $('#section0');
-// $section1.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',function (e) {
-//     $section1.css('-webkit-transform', 'skewY(0deg)');
-// });
-// $('#content0').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',function (e) {
-//     $('#content0').css('-webkit-transform', 'skewY(0deg)');
-// });
+ $section1.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',function (e) {
+     $section1.css('-webkit-transform', 'skewY(0deg)');
+ });
+ $('#content0').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',function (e) {
+     $('#content0').css('-webkit-transform', 'skewY(0deg)');
+ });
 
  var $section2 = $('#section1');
 // $section2.on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',function (e) {
@@ -1245,16 +1245,16 @@
             //    { top: "60", left: "382", rotation: "15", ease: Strong.easeIn }
             //);
 
-            TweenMax.fromTo($($currSection), 1,
-                { repeat: 1, yoyo: true,top: "50", skewY: "30" },
-                { repeat: 1, yoyo: true,top: "20", skewY: "20", ease: Strong.easeIn }
-            );
-
-
-            TweenMax.fromTo($($currSection.find(".content")), 1,
-                { repeat: 1, yoyo: true, skewY: "-30" },
-                { repeat: 1, yoyo: true, skewY: "0", ease: Strong.easeIn }
-            );
+            //TweenMax.fromTo($($currSection), 1,
+            //    { repeat: 1, yoyo: true,top: "50", skewY: "30" },
+            //    { repeat: 1, yoyo: true,top: "20", skewY: "20", ease: Strong.easeIn }
+            //);
+            //
+            //
+            //TweenMax.fromTo($($currSection.find(".content")), 1,
+            //    { repeat: 1, yoyo: true, skewY: "-30" },
+            //    { repeat: 1, yoyo: true, skewY: "0", ease: Strong.easeIn }
+            //);
             //TweenMax.fromTo($($currSection), 1,
             //    { left: "-170", rotation: "15" },
             //    { left: "0", rotation: "-15", ease: Strong.easeInOut }
