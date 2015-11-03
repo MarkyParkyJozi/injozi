@@ -284,10 +284,10 @@
     }
 
     .vert-menu-line.two{
-        margin-left:-60px;
+        margin-left:-47px;
     }
     .vert-menu-line.three{
-        margin-left:-110px;
+        margin-left:-89px;
     }
 
     nav.open .vert-menu-line.two{
@@ -312,10 +312,10 @@
         left: 10px;
         transform: rotate(90deg);
         transform-origin: center;
-        -webkit-transition: all 0.3s ease-in; /* Changed here */
-        -moz-transition: all 0.3s ease-in;
-        -o-transition: all 0.3s ease-in;
-        transition: all 0.3s ease-in;
+        -webkit-transition: transform 0.3s ease-in; /* Changed here */
+        -moz-transition: transform 0.3s ease-in;
+        -o-transition: transform 0.3s ease-in;
+        transition: transform 0.3s ease-in;
     }
 
     /* list styles */
@@ -366,6 +366,14 @@
         float: left;
     }
 
+    .notransition {
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -o-transition: none !important;
+        -ms-transition: none !important;
+        transition: none !important;
+    }
+
 </style>
 
 
@@ -386,7 +394,7 @@
     <div class="col-xs-12 my-row" style="background-color: transparent"></div>
     <div class="col-xs-12 my-row" style="background-color: transparent"></div>
 
-    <nav>
+    <nav id="nav-menu">
         <ul>
             <span class="vert-menu-line"></span>
             <li><a href="#">Home</a></li>
@@ -896,7 +904,6 @@
                    }
                }
 
-
                if((e.pageY > $section)&&(e.pageY < $section*2)&& !isUp && !isMenuButton){
                    if(isDown) {
                        hideDown();
@@ -918,16 +925,40 @@
                    showDown();
                    hideMenu()
                }
+
+               if(isMenuButton && !isNavOpen){
+                   $navigation.css({
+                       left:  (e.pageX-164),
+                       top:   (e.pageY+144)
+                   });
+               } else{
+                   $navigation.css({
+                        left: 10,
+                        top:   10
+                    });
+                }
         });
 
         $(document).on('click', function(e){
            if(isMenuButton){
                if(!isNavOpen) {
+                   document.getElementById('nav-menu').style.WebkitTransition = 'all 1s';
+                   document.getElementById('nav-menu').style.MozTransition = 'all 1s';
+                   $navigation.css({
+                       left: 10,
+                       top:   10
+                   });
+                   $navigation.removeClass('notransition');
                    $navigation.addClass('open');
                    isNavOpen = true;
                    hideMenu(true);
                    showEx();
                }else{
+                   $navigation.css({
+                       left:  (e.pageX-164),
+                       top:   (e.pageY+144)
+                   });
+                   $navigation.addClass('notransition');
                    $navigation.removeClass('open');
                    isNavOpen = false;
                    hideEx();
