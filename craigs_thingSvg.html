@@ -251,6 +251,28 @@
         transition: all 0.3s ease-in;
     }
 
+    #menu svg :nth-child(1),#menu svg :nth-child(3){
+        transform: rotate(-30deg);
+        transform-origin: center;
+    }
+
+    #menu svg :nth-child(2),#menu svg :nth-child(4){
+        transform: rotate(30deg);
+        transform-origin: center;
+    }
+
+    #menu svg :nth-child(6){
+        transform-origin: center;
+        transform: rotate(-30deg) translate(10px,-12px);
+        -moz-transform: rotate(-30deg) translate(0px,-19px);
+    }
+
+    #menu svg :nth-child(5){
+        transform-origin: center;
+        transform: rotate(-30deg) translate(-11px,9px);
+        -moz-transform: rotate(-30deg) translate(0px,-19px);
+    }
+
     .vert-menu-line{
         width: 2px;
         height: 120px;
@@ -268,7 +290,6 @@
         margin-left:-110px;
     }
 
-
     nav.open .vert-menu-line.two{
         margin-left:0px;
     }
@@ -276,10 +297,10 @@
         margin-left:0px;
     }
     nav.open li {opacity: 1;}
-    .nav-menu{
-        position: absolute;
-        top: 10px;
-        left: 10px;
+
+    nav.open{
+        transform: rotate(0deg);
+        transform-origin: center;
     }
 
     nav {
@@ -289,6 +310,12 @@
         position: absolute;
         top: 10px;
         left: 10px;
+        transform: rotate(90deg);
+        transform-origin: center;
+        -webkit-transition: all 0.3s ease-in; /* Changed here */
+        -moz-transition: all 0.3s ease-in;
+        -o-transition: all 0.3s ease-in;
+        transition: all 0.3s ease-in;
     }
 
     /* list styles */
@@ -349,8 +376,10 @@
         <div class="over nudge_left" id="backup"></div>
         <div class="over nudge_left" id="down"></div>
         <div class="over nudge_left" id="backdown"></div>
-        <div class="over nudge_left" id="menu"></div>
-        <div class="over" id="backmenu"></div>
+        <div class="over nudge_left" id="ex"></div>
+        <div class="over nudge_left" id="backex"></div>
+        <div class="over " id="menu"></div>
+        <!--<div class="over" id="backmenu"></div>-->
     </div>
 
     <div class="col-xs-12 my-row" style="background-color: transparent"></div>
@@ -382,11 +411,10 @@
         var  $windowHeight = window.innerHeight;
         var $section = $windowHeight/3;
 
-
         var isUp = false;
         var isDown = false;
-        var isMenu = false;
-        var isMenuOpen = false;
+        var isMenuButton = false;
+        var isNavOpen = false;
 
         var $navigation = $('nav');
         var $cube = $('#cube');
@@ -394,11 +422,10 @@
         var $backup = $('#backup');
         var $down = $('#down');
         var $backdown = $('#backdown');
-
         var $menu = $('#menu');
-        var $backmenu = $('#backmenu');
 
         var $ex = $('#ex');
+        var $backex = $('#backex');
 
         var svgDatacube= {
             "cube": {
@@ -605,14 +632,34 @@
                     //3
                     {
                         "path": "M 50.4 1.8 L 99.2 30.4",
-                        "duration": 600,
-                        "delay":600
+                        "duration": 600
                     },
                     //1
                     {
                         "path": "M 50.4 1.8 L 1.6 30.4",
+                        "duration": 600
+                    },
+                    //11
+                    {
+                        "path": "M 50.4 117 L 1.6 88.4",
+                        "duration": 600
+                    },
+                    //12
+                    {
+                        "path": "M 50.4 117 L 99.2 88.4",
+                        "duration": 600
+                    },
+                    //5
+                    {
+                        "path": "M 50.4 59.8 L 1.6 30.4",
                         "duration": 600,
-                        "delay":600
+                        "delay":450
+                    },
+                    //10
+                    {
+                        "path": "M 50.4 59.8 L 99.2 88.4",
+                        "duration": 600,
+                        "delay":450
                     },
                 ],
                 "dimensions": {
@@ -621,31 +668,9 @@
                 }
             }
         };
-
-        var svgDataBackMenu= {
-            "backmenu": {
-                "strokepath": [
-                    //3
-                    {
-                        "path": "M 99.2 30.4 L 50.4 1.8",
-                        "duration": 600
-                    },
-                    //1
-                    {
-                        "path": "M 1.6 30.4 L 50.4 1.8",
-                        "duration": 600
-                    }
-                ],
-                "dimensions": {
-                    "width": 101,
-                    "height": 120
-                }
-            }
-        };
-
 
         var svgDataEx= {
-            "Ex": {
+            "ex": {
                 "strokepath": [
                     //10
                     {
@@ -675,6 +700,37 @@
             }
         };
 
+        var svgDataBackEx= {
+            "backex": {
+                "strokepath": [
+                    //10
+                    {
+                        "path": "M 99.2 88.4 L 50.4 59.8",
+                        "duration": 600
+                    },
+                    //8
+                    {
+                        "path": "M 1.6 88.4 L 50.4 59.8",
+                        "duration": 600
+                    },
+                    //5
+                    {
+                        "path": "M 1.6 30.4 L 50.4 59.8",
+                        "duration": 600
+                    },
+                    //6
+                    {
+                        "path": "M 99.2 30.4 L 50.4 59",
+                        "duration": 600
+                    },
+                ],
+                "dimensions": {
+                    "width": 101,
+                    "height": 120
+                }
+            }
+        };
+
         $(".my-row").css('height', window.innerHeight/3 + 'px');
 
 
@@ -691,8 +747,7 @@
             'strokeColor': '#ffc015',
             'drawSequential': false,
             'ease': 'easeInOutQuad',
-            'onStrokeStart': function(){console.log("Stroke started");isUp = true},
-            'onStrokeComplete':  function(){console.log("Stroke completed")}
+            'onStrokeStart': function(){isUp = true}
         });
         $backup.lazylinepainter({
             'svgData': svgDataBackUp,
@@ -707,8 +762,7 @@
             'strokeColor': '#ffc015',
             'drawSequential': false,
             'ease': 'easeInOutQuad',
-            'onStrokeStart': function(){console.log("Stroke down started");isDown = true},
-            'onStrokeComplete':  function(){console.log("Stroke down completed")}
+            'onStrokeStart': function(){isDown = true}
         });
         $backdown.lazylinepainter({
             'svgData': svgDataBackDown,
@@ -717,27 +771,34 @@
             'drawSequential': false,
             'ease': 'easeInOutQuad'
         });
-        
-
-
-
-
-
-
-        $ex.lazylinepainter({
-            'svgData': svgDataEx,
+        $menu.lazylinepainter({
+            'svgData': svgDataMenu,
             'strokeWidth': 2,
             'strokeColor': '#ffc015',
             'drawSequential': false,
             'ease': 'easeInOutQuad'
         });
 
+        $ex.lazylinepainter({
+            'svgData': svgDataEx,
+            'strokeWidth': 2,
+            'strokeColor': '#ffc015',
+            'drawSequential': false,
+            'ease': 'easeInOutQuad',
+            'onStrokeStart': function(){$ex.show()}
+        });
 
+        $backex.lazylinepainter({
+            'svgData': svgDataBackEx,
+            'strokeWidth': 2,
+            'strokeColor': 'grey',
+            'drawSequential': false,
+            'ease': 'easeInOutQuad',
+            'onStrokeStart': function(){console.log("Stroke started")},
+            'onStrokeComplete': function(){$backex.hide();$ex.hide()},
 
-        function hideControls(){
-            $backup.hide();
-            $backdown.hide();
-        }
+        });
+
 
         setTimeout(function(){
             $('body').mouseover(function(){
@@ -754,6 +815,7 @@
         function hideUp(){
             $backup.show();
             $backup.lazylinepainter('paint');
+            isUp = false;
         };
 
         function showDown(){
@@ -764,26 +826,44 @@
         function hideDown(){
             $backdown.show();
             $backdown.lazylinepainter('paint');
+            isDown = false;
         };
 
         function showMenu(){
-            $backup.hide();
-            $up.lazylinepainter('paint');
+            $menu.show();
+            $menu.lazylinepainter('paint');
+            $cube.addClass('menu');
+
+            document.getElementById("up").style.visibility = "hidden";
+            document.getElementById("backup").style.visibility = "hidden";
+            document.getElementById("down").style.visibility = "hidden";
+            document.getElementById("backdown").style.visibility = "hidden";
+
+            isMenuButton = true;
         };
 
-        function hideMenu(){
-            $backup.show();
-            $backup.lazylinepainter('paint');
+        function hideMenu(setbool){
+            setbool = (typeof setbool === 'undefined') ? false : setbool;
+            $menu.hide();
+            document.getElementById("up").style.visibility = "visible";
+            document.getElementById("backup").style.visibility = "visible";
+            document.getElementById("down").style.visibility = "visible";
+            document.getElementById("backdown").style.visibility = "visible";
+
+            $('#cube').removeClass('menu');
+            $('#cube').addClass('nomenu');
+
+            isMenuButton = setbool;
         };
 
         function showEx(){
-            $backup.hide();
-            $up.lazylinepainter('paint');
+            $backex.hide();
+            $ex.lazylinepainter('paint');
         };
 
         function hideEx(){
-            $backup.show();
-            $backup.lazylinepainter('paint');
+            $backex.show();
+            $backex.lazylinepainter('paint');
         };
 
 
@@ -795,87 +875,66 @@
         });
 
         $(document).on('mousemove', function(e){
-           //if(!isMenuOpen){
-
-//                if(isMenuOpen){
-//                    $('nav').css({
-//                        left:  e.pageX,
-//                        top:   e.pageY
-//                    });
-//                }
                $('#cursor').css({
                    left:  e.pageX,
                    top:   e.pageY
                });
 
-               console.log(e.pageY < $section);
-
                if((e.pageY < $section)) {
-
                    if(isUp) {
                        hideUp();
-                       isUp = false;
-                   }else {
+                   }else if(isDown){
                        hideDown();
-                       isDown = false;
                    }
 
-                   isMenu = true;
-                   $cube.addClass('menu');
-                   document.getElementById("up").style.visibility = "hidden";
-                   document.getElementById("backup").style.visibility = "hidden";
-                   document.getElementById("down").style.visibility = "hidden";
-                   document.getElementById("backdown").style.visibility = "hidden";
+                   if(!isMenuButton && !isNavOpen){
+                       showMenu();
+                   }
                }else{
-                   document.getElementById("up").style.visibility = "visible";
-                   document.getElementById("backup").style.visibility = "visible";
-                   document.getElementById("down").style.visibility = "visible";
-                   document.getElementById("backdown").style.visibility = "visible";
+                   if(isMenuButton && !isNavOpen){
+                       hideMenu();
+                   }
                }
 
 
-               if((e.pageY > $section)&&(e.pageY < $section*2)&&(!isUp)){
+               if((e.pageY > $section)&&(e.pageY < $section*2)&& !isUp && !isMenuButton){
                    if(isDown) {
                        hideDown();
-                       isDown = false;
                    }
-                   if(isMenu) {
-                       isMenu = false;
+                   if(isMenuButton) {
+                       isMenuButton = false;
                    }
                    showUp();
-                   $('#cube').removeClass('menu');
-                   $('#cube').addClass('nomenu');
+                   hideMenu()
                }
 
-               if((e.pageY > $section*2)&&(!isDown)){
+               if((e.pageY > $section*2)&& !isDown && !isMenuButton){
                    if(isUp) {
                        hideUp();
-                       isUp = false;
                    }
-                   if(isMenu) {
-                       isMenu = false;
+                   if(isMenuButton) {
+                       isMenuButton = false;
                    }
                    showDown();
-                   $('#cube').removeClass('menu');
-                   $('#cube').addClass('nomenu');
+                   hideMenu()
                }
-          // }
-
         });
 
         $(document).on('click', function(e){
-           if(isMenu){
-               if(!isMenuOpen) {
+           if(isMenuButton){
+               if(!isNavOpen) {
                    $navigation.addClass('open');
-                   isMenuOpen = true;
+                   isNavOpen = true;
+                   hideMenu(true);
+                   showEx();
                }else{
                    $navigation.removeClass('open');
-                   isMenuOpen = false;
+                   isNavOpen = false;
+                   hideEx();
+                   showMenu();
                }
            }
         });
-
-
     });
 </script>
 </body>
