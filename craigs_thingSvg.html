@@ -29,17 +29,17 @@
         float: right;
         overflow: visible;
         position: relative;
-        width: 120px;
+        width: 40px;
         z-index: 1000;
-        margin-top: -120px;
+        margin-top: -40px;
     }
     .under {
-        width:120px;
-        height:120px;
+        width:40px;
+        height:40px;
     }
 
     .nudge_left{
-        margin-left: -120px;
+        margin-left: -40px;
     }
 
     /*no menu*/
@@ -274,8 +274,8 @@
     }
 
     .vert-menu-line{
-        width: 2px;
-        height: 120px;
+        width: 1px;
+        height: 40px;
         background-color: grey;
         -webkit-transition: all 0.3s ease-in; /* Changed here */
         -moz-transition: all 0.3s ease-in;
@@ -284,10 +284,10 @@
     }
 
     .vert-menu-line.two{
-        margin-left:-47px;
+        margin-left:-64px;
     }
     .vert-menu-line.three{
-        margin-left:-89px;
+        margin-left:-127px;
     }
 
     nav.open .vert-menu-line.two{
@@ -328,11 +328,12 @@
 
     nav li {
         font-family: Open Sans, sans-serif;
-        font-size: 20px;
+        font-size: 14px;
         font-weight:300;
         float: left;
         padding-right: 20px;
         padding-left: 20px;
+        padding-top: 10px;
         opacity: 0;
         -webkit-transition: all 0.3s ease-in; /* Changed here */
         -moz-transition: all 0.3s ease-in;
@@ -358,7 +359,7 @@
     }
 
     nav li.active a {
-        color: #F15A24;
+        color: #2de9a1;
         font-weight: normal;
     }
 
@@ -752,7 +753,7 @@
         $up.lazylinepainter({
             'svgData': svgDataUp,
             'strokeWidth': 2,
-            'strokeColor': '#ffc015',
+            'strokeColor': '#2de9a1',
             'drawSequential': false,
             'ease': 'easeInOutQuad',
             'onStrokeStart': function(){isUp = true}
@@ -767,7 +768,7 @@
         $down.lazylinepainter({
             'svgData': svgDataDown,
             'strokeWidth': 2,
-            'strokeColor': '#ffc015',
+            'strokeColor': '#2de9a1',
             'drawSequential': false,
             'ease': 'easeInOutQuad',
             'onStrokeStart': function(){isDown = true}
@@ -782,7 +783,7 @@
         $menu.lazylinepainter({
             'svgData': svgDataMenu,
             'strokeWidth': 2,
-            'strokeColor': '#ffc015',
+            'strokeColor': '#2de9a1',
             'drawSequential': false,
             'ease': 'easeInOutQuad'
         });
@@ -790,7 +791,7 @@
         $ex.lazylinepainter({
             'svgData': svgDataEx,
             'strokeWidth': 2,
-            'strokeColor': '#ffc015',
+            'strokeColor': '#2de9a1',
             'drawSequential': false,
             'ease': 'easeInOutQuad',
             'onStrokeStart': function(){$ex.show()}
@@ -928,8 +929,8 @@
 
                if(isMenuButton && !isNavOpen){
                    $navigation.css({
-                       left:  (e.pageX-164),
-                       top:   (e.pageY+144)
+                       left:  (e.pageX-244),
+                       top:   (e.pageY+132)
                    });
                } else{
                    $navigation.css({
@@ -955,8 +956,8 @@
                    showEx();
                }else{
                    $navigation.css({
-                       left:  (e.pageX-164),
-                       top:   (e.pageY+144)
+                       left:  (e.pageX-244),
+                       top:   (e.pageY+132)
                    });
                    $navigation.addClass('notransition');
                    $navigation.removeClass('open');
