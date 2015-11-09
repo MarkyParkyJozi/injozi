@@ -291,27 +291,64 @@
     }
 
     nav.open .vert-menu-line.two{
-        margin-left:0px;
+        -webkit-animation: killMarginL 1s forwards;
+        -webkit-animation-delay: 2s;
     }
+
     nav.open .vert-menu-line.three{
-        margin-left:0px;
+        -webkit-animation: killMarginL 1s forwards;
+        -webkit-animation-delay: 2s;
     }
-    nav.open li {opacity: 1;}
+
+
+    nav.open li{
+        -webkit-animation: fadein 1s forwards;
+        -webkit-animation-delay: 3s;
+    }
 
     nav.open{
-        transform: rotate(0deg);
-        transform-origin: center;
+            /*transform-origin: bottom left;*/
+        -webkit-animation: rotater 1s forwards, mymove 1s forwards;
+        -webkit-animation-delay: 0s, 1s;
+        }
+    #cursor.open{
+        animation: minusNinety 1s forwards,fadeout 1s forwards,fadein 1s forwards;
+        -webkit-animation-delay: 0s, 1s,2s;
+    }
+    @keyframes killMarginL {
+        100%  {margin-left: 0;}
+    }
+
+    @keyframes minusNinety {
+        100%  {transform: rotate(-90deg);}
+    }
+
+    @keyframes fadeout {
+        100%  {opacity: 0;}
+    }
+
+    @keyframes fadein {
+        100%  {opacity: 1;}
+    }
+
+    /* Standard syntax */
+    @keyframes rotater {
+        100%  {transform: rotate(0deg);}
+    }
+
+    @keyframes mymove {
+        100%  {top: 10px;left:10px}
     }
 
     nav {
-        margin: 50px auto;
+
         width: 500px;
         height: 40px;
         position: absolute;
-        top: 10px;
-        left: 10px;
+        /*top: 10px;*/
+        /*left: 10px;*/
         transform: rotate(90deg);
-        transform-origin: center;
+        transform-origin: 20px 20px;
         -webkit-transition: transform 0.3s ease-in; /* Changed here */
         -moz-transition: transform 0.3s ease-in;
         -o-transition: transform 0.3s ease-in;
@@ -324,6 +361,7 @@
         margin: 0px auto;
         overflow: auto;
         list-style: none;
+        padding: 0;
     }
 
     nav li {
@@ -417,7 +455,7 @@
 
 <script>
     $(document).ready(function(){
-        var  $windowHeight = window.innerHeight;
+        var $windowHeight = window.innerHeight;
         var $section = $windowHeight/3;
 
         var isUp = false;
@@ -435,6 +473,8 @@
 
         var $ex = $('#ex');
         var $backex = $('#backex');
+
+        var $cursor = $('#cursor');
 
         var svgDatacube= {
             "cube": {
@@ -816,6 +856,63 @@
             $cube.lazylinepainter('paint');
         }, 10);
 
+        function hideAll(except){
+            except = (typeof except === 'undefined') ? 'none' : except;
+
+            $cube.hide();
+            $up.hide();
+            $backup.hide();
+            $down.hide();
+            $backdown.hide();
+            $menu.hide();
+            $ex.hide();
+            $backex.hide();
+
+            switch (except) {
+                case "cube":
+                    $cube.show();
+                    break;
+                case "up":
+                    $up.show();
+                    $backup.show();
+                    break;
+                case "down":
+                    $down.show();
+                    $backdown.show();
+                    break;
+                case "menu":
+                    $menu.show();
+                    break;
+                case "ex":
+                    $ex.show();
+                    $backex.show();
+                    break;
+            }
+
+            $cube.hide();
+            $up.hide();
+            $backup.hide();
+            $down.hide();
+            $backdown.hide();
+            $menu.hide();
+            $ex.hide();
+            $backex.hide();
+
+
+        }
+        function showAll(){
+
+            $cube.show();
+            $up.show();
+            $backup.show();
+            $down.show();
+            $backdown.show();
+            $menu.show();
+            $ex.show();
+            $backex.show();
+
+
+        }
         function showUp(){
             $backup.hide();
             $up.lazylinepainter('paint');
@@ -929,13 +1026,13 @@
 
                if(isMenuButton && !isNavOpen){
                    $navigation.css({
-                       left:  (e.pageX-244),
-                       top:   (e.pageY+132)
+                       display:'block',
+                       left:  (e.pageX-14),
+                       top:   (e.pageY-8)
                    });
-               } else{
+               } else if(!isNavOpen){
                    $navigation.css({
-                        left: 10,
-                        top:   10
+                        display:'none'
                     });
                 }
         });
@@ -943,27 +1040,22 @@
         $(document).on('click', function(e){
            if(isMenuButton){
                if(!isNavOpen) {
-                   document.getElementById('nav-menu').style.WebkitTransition = 'all 1s';
-                   document.getElementById('nav-menu').style.MozTransition = 'all 1s';
-                   $navigation.css({
-                       left: 10,
-                       top:   10
-                   });
-                   $navigation.removeClass('notransition');
+                   $cursor.addClass('open');
                    $navigation.addClass('open');
                    isNavOpen = true;
-                   hideMenu(true);
-                   showEx();
+                   setTimeout(function(){
+                     hideAll('ex');
+                       showEx();
+                   }, 2000);
+
                }else{
-                   $navigation.css({
-                       left:  (e.pageX-244),
-                       top:   (e.pageY+132)
-                   });
-                   $navigation.addClass('notransition');
+                   $cursor.removeClass('open');
                    $navigation.removeClass('open');
                    isNavOpen = false;
-                   hideEx();
-                   showMenu();
+
+                       showAll();
+                       hideEx();
+
                }
            }
         });
